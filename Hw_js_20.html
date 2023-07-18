@@ -1,11 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .d1 {
+      text-align: center;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      background-color: bisque;
+    }
+
+    #number {
+      text-align: center;
+      margin: 5px
+    }
+  </style>
 </head>
+
 <body>
-    
+
+  <div class="d1">
+    <input type="number" id="number" value="0" readonly>
+    <br>
+    <button onclick="decrement()"> &lt; </button>
+        <button onclick="increment()"> &gt; </button>
+  </div>
+
+  <script>
+    function increment() {
+      var number = document.getElementById("number");
+      var value = parseInt(number.value);
+      number.value = value + 1;
+    }
+
+    function decrement() {
+      var number = document.getElementById("number");
+      var value = parseInt(number.value);
+      number.value = value - 1;
+    }
+  </script>
 </body>
+
 </html>
