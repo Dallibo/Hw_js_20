@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Додавання та видалення блоків</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+
+    #blockContainer {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .colorBlock {
+      width: 100px;
+      height: 100px;
+      margin: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <button onclick="addColorBlock()">Додати блок</button>
+  <div id="blockContainer"></div>
+
+  <script>
+    function addColorBlock() {
+      var blockContainer = document.getElementById("blockContainer");
+      var colorBlock = document.createElement("div");
+      
+      var randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+
+      colorBlock.style.backgroundColor = randomColor;
+      colorBlock.classList.add("colorBlock");
+
+      colorBlock.addEventListener("click", function() {
+        blockContainer.removeChild(colorBlock);
+      });
+
+      blockContainer.appendChild(colorBlock);
+    }
+  </script>
+</body>
+</html>
