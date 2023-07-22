@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            background-color: bisque;
+            width: 50%;
+            padding: 10px 20px;
+        }
+
+        hr {
+            margin-bottom: 20px;
+        }
+
+        .comment {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .comment h3 {
+            margin-bottom: 0;
+        }
+
+        .comment .date {
+            font-size: 15px;
+            color: #666;
+        }
+
+        .comment .content {
+            margin-top: 5px;
+        }
+        #name{
+            width: 40%;
+        }
+        #message{
+            width: 100%;
+        }
+        button{
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="post">
+            <h2>What is lorem ipsum</h2>
+            <div>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos explicabo odio praesentium voluptatibus
+                eius aliquid inventore sapiente, unde fugiat, nisi harum ipsum ut debitis id quibusdam quis, veritatis
+                adipisci? Dignissimos pariatur veniam aperiam quae quisquam praesentium fugit, maxime deleniti nam.
+            </div>
+            <hr>
+        </div>
+        <div class="comments" id="commentsContainer">
+            <div class="comment">
+                <h3><b>Antonie</b></h3>
+                <div class="date">2023-07-17</div>
+                <div class="content">Best comment for Antonie.</div>
+            </div>
+           
+        </div>
+        <div class="form">
+            <h4>Leave your comment</h4>
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="mess">
+                <label for="message">Commens:</label>
+                <div>
+                <textarea id="message" required></textarea>
+            </div>
+            </div>
+
+            <button onclick="addComment()">Add comment</button>
+        </div>
+    </div>
+
+    <script>
+        function addComment() {
+            var name = document.getElementById("name").value;
+            var message = document.getElementById("message").value;
+            var commentsContainer = document.getElementById("commentsContainer");
+
+            var commentDiv = document.createElement("div");
+            commentDiv.classList.add("comment");
+
+            var nameElement = document.createElement("h3");
+            nameElement.innerHTML = "<b>" + name + "</b>";
+
+            var dateElement = document.createElement("div");
+            dateElement.classList.add("date");
+            dateElement.textContent = getCurrentDate();
+
+            var contentElement = document.createElement("div");
+            contentElement.classList.add("content");
+            contentElement.textContent = message;
+
+            commentDiv.appendChild(nameElement);
+            commentDiv.appendChild(dateElement);
+            commentDiv.appendChild(contentElement);
+
+            commentsContainer.appendChild(commentDiv);
+
+            document.getElementById("name").value = "";
+            document.getElementById("message").value = "";
+
+        }
+
+        function getCurrentDate() {
+            var date = new Date();
+            var year = date.getFullYear();
+            var month = ("0" + (date.getMonth() + 1)).slice(-2);
+            var day = ("0" + date.getDate()).slice(-2);
+            return year + "-" + month + "-" + day;
+        }
+    </script>
+</body>
+
+</html>
