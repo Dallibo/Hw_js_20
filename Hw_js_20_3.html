@@ -1,11 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title></title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .palette {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .color-box {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+        }
+    </style>
 </head>
+
 <body>
-    
+    <div class="palette">
+        <div class="color-box" data-color="red" style="background-color: red;"></div>
+        <div class="color-box" data-color="blue" style="background-color: blue;"></div>
+        <div class="color-box" data-color="green" style="background-color: green;"></div>
+        <div class="color-box" data-color="orange" style="background-color: orange;"></div>
+        <div class="color-box" data-color="purple" style="background-color: purple;"></div>
+    </div>
+
+    <div id="textContainer">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores quo sapiente sed molestias! Saepe
+            adipisci aliquam quasi, assumenda corrupti debitis eveniet delectus iure reiciendis autem officia ad
+            doloribus ab dicta? Officiis architecto minus animi expedita ab sed eveniet natus, autem, ducimus, sit ad et
+            corporis? Est dolores obcaecati voluptatibus placeat.</p>
+    </div>
+
+    <script>
+        var colorBoxes = document.querySelectorAll('.color-box');
+        var textContainer = document.getElementById('textContainer');
+
+        function changeTextColor(color) {
+            textContainer.style.color = color;
+        }
+
+
+        colorBoxes.forEach(function (colorBox) {
+            colorBox.addEventListener('click', function () {
+                var selectedColor = this.getAttribute('data-color');
+                changeTextColor(selectedColor);
+            });
+        });
+    </script>
 </body>
+
 </html>
