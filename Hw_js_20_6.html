@@ -1,11 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Country Autocomplete</title>
+    <style>
+        #countryInput {
+            width: 300px;
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        #suggestions {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            position: absolute;
+            background-color: #f1f1f1;
+            border: 1px solid #ccc;
+            width: 300px;
+        }
+
+        #suggestions li {
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        #suggestions li:hover {
+            background-color: #ddd;
+        }
+    </style>
 </head>
+
 <body>
-    
+    <h1>Country Autocomplete</h1>
+    <input type="text" id="countryInput" placeholder="Enter a country...">
+    <ul id="suggestions"></ul>
+
+    <script>
+        const countries = [
+            "Ukraine",
+            "United States",
+            "United Kingdom",
+            "Canada",
+            "Australia",
+            "Germany",
+            "France",
+            "Italy",
+            "Spain",
+            "Japan",
+            "China",
+            "Brazil",
+            "India",
+            "Russia",
+        ];
+
+        const input = document.getElementById("countryInput");
+        const suggestionsList = document.getElementById("suggestions");
+
+        input.addEventListener("input", function () {
+            const searchTerm = input.value.toLowerCase();
+
+            suggestionsList.innerHTML = "";
+
+            if (searchTerm.trim() === "") {
+                return;
+            }
+           const matchingCountries = countries.filter((country) =>
+                country.toLowerCase().startsWith(searchTerm)
+            );
+
+            for (let i = 0; i < Math.min(matchingCountries.length, 10); i++) {
+                const suggestion = document.createElement("li");
+                suggestion.textContent = matchingCountries[i];
+
+                suggestion.addEventListener("click", function () {
+                    input.value = this.textContent;
+                    suggestionsList.innerHTML = "";
+                });
+
+                suggestionsList.appendChild(suggestion);
+            }
+        });
+
+        document.addEventListener("click", function (event) {
+            if (event.target !== input) {
+                suggestionsList.innerHTML = "";
+            }
+        });
+    </script>
 </body>
+
 </html>
